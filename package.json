@@ -1,0 +1,12 @@
+{
+  "name": "metacog",
+  "version": "1.0.0",
+  "description": "metadata retriever for Fly.io",
+  "private": true,
+  "author": "yun asny23",
+  "license": "MIT",
+  "volta": {
+    "node": "16.13.0",
+    "npm": "8.1.4"
+  }
+}
