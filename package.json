@@ -5,6 +5,9 @@
   "private": true,
   "author": "yun asny23",
   "license": "MIT",
+  "dependencies": {
+    "@tinyhttp/app": "^2.0.13"
+  },
   "volta": {
     "node": "16.13.0",
     "npm": "8.1.4"
