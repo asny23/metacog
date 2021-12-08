@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "description": "metadata retriever for Fly.io",
   "private": true,
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "author": "yun asny23",
   "license": "MIT",
   "dependencies": {
