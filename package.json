@@ -1,7 +1,7 @@
 {
   "name": "metacog",
   "version": "1.0.0",
-  "description": "metadata retriever for Fly.io",
+  "description": "a tiny metadata retriever with metascraper",
   "private": true,
   "main": "server.js",
   "type": "module",
