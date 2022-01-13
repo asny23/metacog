@@ -10,7 +10,10 @@ import metascraper_logo from 'metascraper-logo'
 import metascraper_publisher from 'metascraper-publisher'
 import metascraper_title from 'metascraper-title'
 import metascraper_url from 'metascraper-url'
+import NodeCache from 'node-cache'
 
+const CACHE_TTL = parseInt(process.env.CACHE_TTL) || 86400
+const CACHE_CHECK = parseInt(process.env.CACHE_CHECK) || 3600
 const port = process.env.PORT || 3000
 
 const scraper = metascraper([
@@ -24,6 +27,11 @@ const scraper = metascraper([
   metascraper_title(),
   metascraper_url()
 ])
+
+const myCache = new NodeCache({
+  stdTTL: CACHE_TTL,
+  checkperiod: CACHE_CHECK
+})
 
 const app = new App({
   settings: { xPoweredBy: false }
@@ -39,9 +47,15 @@ app.get('/', async (req, res) => {
     res.status(400).send({ message: 'Please supply an URL to be scraped in the url query parameter.' })
   }
   try {
-    const { body: html, url } = await got(target)
-    const metadata = await scraper({ html, url })
-    res.send(metadata)
+    const cache = myCache.get(target)
+    if (cache) {
+      res.send(cache)
+    } else {
+      const { body: html, url } = await got(target)
+      const metadata = await scraper({ html, url })
+      myCache.set(target, metadata)
+      res.send(metadata)
+    }
   } catch (err) {
     console.log('Error occured during scraping:', err)
     res.status(400).send({ message: `Scraping the open graph data from "${target}" failed.` })

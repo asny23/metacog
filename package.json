@@ -23,7 +23,8 @@
     "metascraper-logo": "^5.25.5",
     "metascraper-publisher": "^5.25.5",
     "metascraper-title": "^5.25.5",
-    "metascraper-url": "^5.25.5"
+    "metascraper-url": "^5.25.5",
+    "node-cache": "^5.1.2"
   },
   "volta": {
     "node": "16.13.0",
