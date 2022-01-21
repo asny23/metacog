@@ -49,6 +49,11 @@ See [Container registry](https://github.com/asny23/metacog/pkgs/container/metaco
 $ docker build .
 ```
 
+## Configuration
+environment variables:
+- `CACHE_TTL` : Memory cache retention period for fetched data. in seconds. set `0` for infinity.
+- `CACHE_CHECK` : Cache expiration check interval. in seconds.
+
 ## Deploy to [Fly.io](https://fly.io)
 
 1. Set up your account & app

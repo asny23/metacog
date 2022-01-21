@@ -4,6 +4,8 @@ kill_signal = "SIGINT"
 kill_timeout = 10
 
 [env]
+  CACHE_TTL = ""
+  CACHE_CHECK = ""
 
 [[services]]
   internal_port = 3000
