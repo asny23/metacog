@@ -15,6 +15,11 @@ import NodeCache from 'node-cache'
 const CACHE_TTL = parseInt(process.env.CACHE_TTL) || 86400
 const CACHE_CHECK = parseInt(process.env.CACHE_CHECK) || 3600
 const port = process.env.PORT || 3000
+const ALLOWED_ORIGIN = []
+
+if(process.env.ALLOWED_ORIGIN) {
+  process.env.ALLOWED_ORIGIN.split(' ').forEach(ao => ALLOWED_ORIGIN.push(new RegExp(ao)))
+}
 
 const scraper = metascraper([
   metascraper_author(),
@@ -40,7 +45,16 @@ const app = new App({
 app.get('/health', (_, res) => res.send('ok!'))
 
 app.get('/', async (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*')
+  if (ALLOWED_ORIGIN.length) {
+    const reducer = (accumulator, currentValue) => accumulator || currentValue.test(req.headers.origin)
+    if (ALLOWED_ORIGIN.reduce(reducer, false)) {
+      res.setHeader('Access-Control-Allow-Origin', req.headers.origin)
+    } else {
+      res.status(400).send({ message: 'Origin not allowed.' })
+    }
+  } else {
+    res.setHeader('Access-Control-Allow-Origin', '*')
+  }
 
   const target = req.query.url?.toString()
   if (!target) {
