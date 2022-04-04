@@ -51,12 +51,22 @@ $ docker build .
 
 ## Configuration
 environment variables:
-- `CACHE_TTL` : Memory cache retention period for fetched data. in seconds. set `0` for infinity.
-- `CACHE_CHECK` : Cache expiration check interval. in seconds.
+- `ALLOWED_ORIGIN`
+  - Allowed origins for CORS
+  - Write in space-delimited regular expressions
+  - `Access-Control-Allow-Origin`
+  - set blank for `Access-Control-Allow-Origin: *`
+- `CACHE_TTL`
+  - Memory cache retention period for fetched data
+  - in seconds
+  - set `0` for infinity
+- `CACHE_CHECK`
+  - Cache expiration check interval
+  - in seconds
 
 ## Deploy to [Fly.io](https://fly.io)
 
-1. Set up your account & app
+1. Set up your account & app & cli
 1. `$ cp sample.fly.toml fly.toml`
 1. Enter your app name in `fly.toml`
 1. `$ flyctl deploy`
