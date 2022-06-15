@@ -19,11 +19,13 @@
     "metascraper-date": "^5.29.7",
     "metascraper-description": "^5.29.7",
     "metascraper-image": "^5.29.7",
+    "metascraper-instagram": "^5.29.7",
     "metascraper-lang": "^5.29.7",
     "metascraper-logo": "^5.29.7",
     "metascraper-publisher": "^5.29.7",
     "metascraper-title": "^5.29.7",
     "metascraper-url": "^5.29.7",
+    "metascraper-youtube": "^5.29.7",
     "node-cache": "^5.1.2"
   },
   "volta": {

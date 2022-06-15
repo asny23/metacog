@@ -10,6 +10,8 @@ import metascraper_logo from 'metascraper-logo'
 import metascraper_publisher from 'metascraper-publisher'
 import metascraper_title from 'metascraper-title'
 import metascraper_url from 'metascraper-url'
+import metascraper_youtube from 'metascraper-youtube'
+import metascraper_instagram from 'metascraper-instagram'
 import NodeCache from 'node-cache'
 
 const CACHE_TTL = parseInt(process.env.CACHE_TTL) || 86400
@@ -30,7 +32,9 @@ const scraper = metascraper([
   metascraper_logo(),
   metascraper_publisher(),
   metascraper_title(),
-  metascraper_url()
+  metascraper_url(),
+  metascraper_youtube(),
+  metascraper_instagram()
 ])
 
 const myCache = new NodeCache({
