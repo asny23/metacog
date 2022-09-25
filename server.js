@@ -54,7 +54,7 @@ app.get('/', async (req, res) => {
     if (ALLOWED_ORIGIN.reduce(reducer, false)) {
       res.setHeader('Access-Control-Allow-Origin', req.headers.origin)
     } else {
-      res.status(400).send({ message: 'Origin not allowed.' })
+      res.status(400).json({ message: 'Origin not allowed.' })
     }
   } else {
     res.setHeader('Access-Control-Allow-Origin', '*')
@@ -62,21 +62,21 @@ app.get('/', async (req, res) => {
 
   const target = req.query.url?.toString()
   if (!target) {
-    res.status(400).send({ message: 'Please supply an URL to be scraped in the url query parameter.' })
+    res.status(400).json({ message: 'Please supply an URL to be scraped in the url query parameter.' })
   }
   try {
     const cache = myCache.get(target)
     if (cache) {
-      res.send(cache)
+      res.json(cache)
     } else {
       const { body: html, url } = await got(target)
       const metadata = await scraper({ html, url })
       myCache.set(target, metadata)
-      res.send(metadata)
+      res.json(metadata)
     }
   } catch (err) {
     console.log('Error occured during scraping:', err)
-    res.status(400).send({ message: `Scraping the open graph data from "${target}" failed.` })
+    res.status(400).json({ message: `Scraping the open graph data from "${target}" failed.` })
   }
 })
 
