@@ -31,8 +31,10 @@ returns
 ## Run locally
 
 - Requirements
-  - Node.js 16
+  - Node.js 18
   - npm@8
+
+([Volta](https://volta.sh/) is recommended)
 
 ```shell
 $ npm i
