@@ -4,11 +4,13 @@ import metascraper from 'metascraper'
 import metascraper_author from 'metascraper-author'
 import metascraper_date from 'metascraper-date'
 import metascraper_description from 'metascraper-description'
+import metascraper_feed from 'metascraper-feed'
 import metascraper_image from 'metascraper-image'
 import metascraper_lang from 'metascraper-lang'
 import metascraper_logo from 'metascraper-logo'
 import metascraper_publisher from 'metascraper-publisher'
 import metascraper_title from 'metascraper-title'
+import metascraper_twitter from 'metascraper-twitter'
 import metascraper_url from 'metascraper-url'
 import metascraper_youtube from 'metascraper-youtube'
 import metascraper_instagram from 'metascraper-instagram'
@@ -27,11 +29,13 @@ const scraper = metascraper([
   metascraper_author(),
   metascraper_date(),
   metascraper_description(),
+  metascraper_feed(),
   metascraper_image(),
   metascraper_lang(),
   metascraper_logo(),
   metascraper_publisher(),
   metascraper_title(),
+  metascraper_twitter(),
   metascraper_url(),
   metascraper_youtube(),
   metascraper_instagram()
