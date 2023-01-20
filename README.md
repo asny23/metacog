@@ -71,4 +71,4 @@ environment variables:
 1. Set up your account & app & cli
 1. `$ cp sample.fly.toml fly.toml`
 1. Enter your app name in `fly.toml`
-1. `$ flyctl deploy`
+1. `$ npm run deploy`
