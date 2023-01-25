@@ -1,4 +1,4 @@
-FROM bitnami/node:18.9.1 as builder
+FROM bitnami/node:18.13.0 as builder
 
 WORKDIR /app
 COPY package*.json .
