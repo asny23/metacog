@@ -18,13 +18,15 @@ returns
 {
   "author": null,
   "date": null,
-  "description": "GitHub is where over 73 million developers shape the future of software, together. Contribute to the open source community, manage your Git repositories, review code like a pro, track bugs and feat...",
-  "image": "https://github.githubassets.com/images/modules/site/social-cards/github-social.png",
+  "description": "GitHub is where over 94 million developers shape the future of software, together. Contribute to the open source community, manage your Git repositories, review code like a pro, track bugs and feat...",
+  "feed": null,
+  "image": "https://github.githubassets.com/images/modules/site/social-cards/campaign-social.png",
   "lang": "en",
   "logo": null,
   "publisher": "GitHub",
-  "title": "GitHub: Where the world builds software",
-  "url": "https://github.com"
+  "title": "GitHub: Let’s build from here",
+  "video": null,
+  "url": "https://github.com/"
 }
 ```
 
