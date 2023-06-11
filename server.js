@@ -16,6 +16,7 @@ import metascraper_youtube from 'metascraper-youtube'
 import metascraper_instagram from 'metascraper-instagram'
 import NodeCache from 'node-cache'
 
+const VERSION='1.5.0'
 const CACHE_TTL = parseInt(process.env.CACHE_TTL) || 86400
 const CACHE_CHECK = parseInt(process.env.CACHE_CHECK) || 3600
 const port = process.env.PORT || 3000
@@ -51,6 +52,8 @@ const app = new App({
 })
 
 app.get('/health', (_, res) => res.send('ok!'))
+
+app.get('/version', (_, res) => res.send(VERSION))
 
 app.get('/', async (req, res) => {
   if (ALLOWED_ORIGIN.length) {
