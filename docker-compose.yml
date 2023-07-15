@@ -1,0 +1,21 @@
+services:
+  app:
+    image: bitnami/node:18.16.0
+    command: sh -c 'npm i && npm run dev'
+    environment:
+      # ALLOWED_ORIGIN: ""
+      # CACHE_TTL: 0
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+  redis:
+    image: redis/redis-stack:6.2.6-v8
+    ports:
+      - 6379:6379
+      - 8001:8001
+    volumes:
+      - redis_data:/data
+
+volumes:
+  redis_data:
