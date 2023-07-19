@@ -14,6 +14,7 @@ import metascraper_twitter from 'metascraper-twitter'
 import metascraper_url from 'metascraper-url'
 import metascraper_youtube from 'metascraper-youtube'
 import metascraper_instagram from 'metascraper-instagram'
+import Redis from 'ioredis'
 import NodeCache from 'node-cache'
 
 const VERSION='1.5.0'
@@ -21,6 +22,7 @@ const CACHE_TTL = parseInt(process.env.CACHE_TTL) || 86400
 const CACHE_CHECK = parseInt(process.env.CACHE_CHECK) || 3600
 const port = process.env.PORT || 3000
 const ALLOWED_ORIGIN = []
+const USE_REDIS = process.env.REDIS_HOST !== undefined
 
 if(process.env.ALLOWED_ORIGIN) {
   process.env.ALLOWED_ORIGIN.split(' ').forEach(ao => ALLOWED_ORIGIN.push(new RegExp(ao)))
@@ -42,10 +44,31 @@ const scraper = metascraper([
   metascraper_instagram()
 ])
 
-const myCache = new NodeCache({
+const redis = (
+  USE_REDIS
+  ? new Redis({
+      host: process.env.REDIS_HOST || 'localhost',
+    })
+  : undefined
+)
+const memCache = new NodeCache({
   stdTTL: CACHE_TTL,
   checkperiod: CACHE_CHECK
 })
+
+const getCache = async (key) => {
+  return (
+  USE_REDIS
+    ? JSON.parse(await redis.get(key))
+    : memCache.get(key)
+)}
+
+const setCache = async (key, value) => {
+  return (
+  USE_REDIS
+    ? await redis.set(key, JSON.stringify(value), "EX", CACHE_TTL)
+    : memCache.set(key, value)
+)}
 
 const app = new App({
   settings: { xPoweredBy: false }
@@ -74,13 +97,13 @@ app.get('/', async (req, res) => {
     return
   }
   try {
-    const cache = myCache.get(target)
+    const cache = await getCache(target)
     if (cache) {
       res.json(cache)
     } else {
       const { body: html, url } = await got(target)
       const metadata = await scraper({ html, url })
-      myCache.set(target, metadata)
+      await setCache(target, metadata)
       res.json(metadata)
     }
   } catch (err) {
