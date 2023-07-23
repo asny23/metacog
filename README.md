@@ -55,6 +55,20 @@ $ docker build .
 
 ## Configuration
 environment variables:
+- `REDIS_HOST`
+  - Redis host for caching
+  - if undefined, memory cache is used
+- `REDIS_PORT`
+  - Redis port
+  - if undefined, 6379
+- `REDIS_FAMILY`
+  - IP version for Redis connection
+  - if undefined, 4
+- `REDIS_USER`
+  - Redis username
+  - if undefined, `default`
+- `REDIS_PASS`
+  - Redis password
 - `ALLOWED_ORIGIN`
   - Allowed origins for CORS
   - Write in space-delimited regular expressions

@@ -48,6 +48,10 @@ const redis = (
   USE_REDIS
   ? new Redis({
       host: process.env.REDIS_HOST || 'localhost',
+      port: parseInt(process.env.REDIS_PORT) || 6379,
+      family: parseInt(process.env.REDIS_FAMILY) || 4,
+      username: process.env.REDIS_USER || 'default',
+      password: process.env.REDIS_PASS || '',
     })
   : undefined
 )
@@ -69,6 +73,9 @@ const setCache = async (key, value) => {
     ? await redis.set(key, JSON.stringify(value), "EX", CACHE_TTL)
     : memCache.set(key, value)
 )}
+
+console.log(`metacog ${VERSION} start`)
+console.log(`  USE_REDIS: ${USE_REDIS}`)
 
 const app = new App({
   settings: { xPoweredBy: false }
