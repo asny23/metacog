@@ -52,6 +52,7 @@ const redis = (
       family: parseInt(process.env.REDIS_FAMILY) || 4,
       username: process.env.REDIS_USER || 'default',
       password: process.env.REDIS_PASS || '',
+      commandTimeout: parseInt(process.env.REDIS_TIMEOUT) || 1000,
     })
   : undefined
 )
@@ -61,18 +62,29 @@ const memCache = new NodeCache({
 })
 
 const getCache = async (key) => {
-  return (
-  USE_REDIS
-    ? JSON.parse(await redis.get(key))
-    : memCache.get(key)
-)}
+  try {
+    return (
+      USE_REDIS
+        ? JSON.parse(await redis.get(key))
+        : memCache.get(key)
+    )
+  } catch(e) {
+    console.log('Error occured on getCache', e)
+    return undefined
+  }
+}
 
 const setCache = async (key, value) => {
-  return (
-  USE_REDIS
-    ? await redis.set(key, JSON.stringify(value), "EX", CACHE_TTL)
-    : memCache.set(key, value)
-)}
+  try {
+    return (
+      USE_REDIS
+        ? await redis.set(key, JSON.stringify(value), "EX", CACHE_TTL)
+        : memCache.set(key, value)
+    )
+  } catch(e) {
+    console.log('Error occured on setCache', e)
+  }
+}
 
 console.log(`metacog ${VERSION} start`)
 console.log(`  USE_REDIS: ${USE_REDIS}`)
