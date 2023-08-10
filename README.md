@@ -18,7 +18,7 @@ returns
 {
   "author": null,
   "date": null,
-  "description": "GitHub is where over 94 million developers shape the future of software, together. Contribute to the open source community, manage your Git repositories, review code like a pro, track bugs and feat...",
+  "description": "GitHub is where over 100 million developers shape the future of software, together. Contribute to the open source community, manage your Git repositories, review code like a pro, track bugs and fea…",
   "feed": null,
   "image": "https://github.githubassets.com/images/modules/site/social-cards/campaign-social.png",
   "lang": "en",
@@ -40,7 +40,7 @@ returns
 
 ```shell
 $ npm i
-$ npm run start
+$ npm run dev
 ```
 
 ## Use container image
@@ -55,6 +55,9 @@ $ docker build .
 
 ## Configuration
 environment variables:
+- `PORT`
+  - Port to expose app
+  - if undefined, 3000
 - `REDIS_HOST`
   - Redis host for caching
   - if undefined, memory cache is used
@@ -69,22 +72,27 @@ environment variables:
   - if undefined, `default`
 - `REDIS_PASS`
   - Redis password
+- `REDIS_TIMEOUT`
+  - Redis command timeout
+  - in millisecond
 - `ALLOWED_ORIGIN`
   - Allowed origins for CORS
   - Write in space-delimited regular expressions
   - `Access-Control-Allow-Origin`
   - set blank for `Access-Control-Allow-Origin: *`
 - `CACHE_TTL`
-  - Memory cache retention period for fetched data
+  - Cache retention period for fetched data
   - in seconds
-  - set `0` for infinity
+  - if undefined, 24hour
 - `CACHE_CHECK`
+  - Effective only with memory cache
   - Cache expiration check interval
   - in seconds
 
 ## Deploy to [Fly.io](https://fly.io)
 
 1. Set up your account & app & cli
+1. `$ flyctl redis create` (if you use Redis)
 1. `$ cp sample.fly.toml fly.toml`
 1. Enter your app name in `fly.toml`
 1. `$ npm run deploy`
