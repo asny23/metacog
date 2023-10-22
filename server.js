@@ -132,4 +132,6 @@ app.get('/', async (req, res) => {
   }
 })
 
+app.get('/418', (_, res) => res.status(418).send("I'm a teapot"))
+
 app.listen(port)
