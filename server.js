@@ -1,6 +1,7 @@
 import { App } from '@tinyhttp/app'
 import got from 'got'
 import metascraper from 'metascraper'
+import metascraper_audio from 'metascraper-audio'
 import metascraper_author from 'metascraper-author'
 import metascraper_date from 'metascraper-date'
 import metascraper_description from 'metascraper-description'
@@ -8,12 +9,15 @@ import metascraper_feed from 'metascraper-feed'
 import metascraper_image from 'metascraper-image'
 import metascraper_lang from 'metascraper-lang'
 import metascraper_logo from 'metascraper-logo'
+import metascraper_logo_favicon from 'metascraper-logo-favicon'
 import metascraper_publisher from 'metascraper-publisher'
+import metascraper_telegram from 'metascraper-telegram'
 import metascraper_title from 'metascraper-title'
 import metascraper_twitter from 'metascraper-twitter'
 import metascraper_url from 'metascraper-url'
 import metascraper_youtube from 'metascraper-youtube'
 import metascraper_instagram from 'metascraper-instagram'
+import metascraper_video from 'metascraper-video'
 import Redis from 'ioredis'
 import NodeCache from 'node-cache'
 
@@ -30,19 +34,23 @@ if(process.env.ALLOWED_ORIGIN) {
 }
 
 const scraper = metascraper([
+  metascraper_audio(),
   metascraper_author(),
   metascraper_date(),
   metascraper_description(),
   metascraper_feed(),
   metascraper_image(),
+  metascraper_instagram(),
   metascraper_lang(),
   metascraper_logo(),
+  metascraper_logo_favicon(),
   metascraper_publisher(),
+  metascraper_telegram(),
   metascraper_title(),
   metascraper_twitter(),
   metascraper_url(),
   metascraper_youtube(),
-  metascraper_instagram()
+  metascraper_video(),
 ])
 
 const redis = (
