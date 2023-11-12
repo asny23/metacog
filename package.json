@@ -1,6 +1,6 @@
 {
   "name": "metacog",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "a tiny metadata retriever with metascraper",
   "private": true,
   "main": "server.js",
@@ -38,7 +38,7 @@
     "node-cache": "^5.1.2"
   },
   "volta": {
-    "node": "20.8.1",
-    "npm": "10.2.0"
+    "node": "20.9.0",
+    "npm": "10.2.3"
   }
 }

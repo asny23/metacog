@@ -33,8 +33,8 @@ returns
 ## Run locally
 
 - Requirements
-  - Node.js 18.x
-  - npm@9
+  - Node.js 20.x
+  - npm@10
 
 ([Volta](https://volta.sh/) is recommended)
 

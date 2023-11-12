@@ -1,6 +1,6 @@
 services:
   app:
-    image: bitnami/node:20.8.1
+    image: bitnami/node:20.9.0
     command: sh -c 'npm i && npm run dev'
     environment:
       REDIS_HOST: redis
