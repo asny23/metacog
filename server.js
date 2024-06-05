@@ -131,8 +131,8 @@ app.get('/', async (req, res) => {
     } else {
       const { body: html, url } = await got(target)
       const metadata = await scraper({ html, url })
-      await setCache(target, metadata)
       res.json(metadata)
+      await setCache(target, metadata)
     }
   } catch (err) {
     console.log('Error occured during scraping:', err)
