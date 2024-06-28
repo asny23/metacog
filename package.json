@@ -36,9 +36,5 @@
     "metascraper-video": "^5.45.9",
     "metascraper-youtube": "^5.45.9",
     "node-cache": "^5.1.2"
-  },
-  "volta": {
-    "node": "20.11.1",
-    "npm": "10.2.4"
   }
 }
