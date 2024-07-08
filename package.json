@@ -1,6 +1,6 @@
 {
   "name": "metacog",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "a tiny metadata retriever with metascraper",
   "private": true,
   "main": "server.js",
