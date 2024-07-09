@@ -36,11 +36,18 @@ returns
   - Node.js 20.x
   - npm@10
 
-([Volta](https://volta.sh/) is recommended)
-
 ```shell
 $ npm i
 $ npm run dev
+```
+
+## Run locally with compose
+
+- Requirements
+  - Docker Desktop or equivalent
+
+```shell
+$ docker compose up
 ```
 
 ## Use container image
