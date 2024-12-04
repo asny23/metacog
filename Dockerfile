@@ -1,11 +1,11 @@
-FROM bitnami/node:20.15.1 as builder
+FROM bitnami/node:22.12.0 as builder
 
 WORKDIR /app
 COPY package*.json .
 RUN npm ci
 
 
-FROM gcr.io/distroless/nodejs20-debian12:latest
+FROM gcr.io/distroless/nodejs22-debian12:latest
 
 WORKDIR /app
 EXPOSE 3000
