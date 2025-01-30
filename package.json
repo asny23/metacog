@@ -28,12 +28,13 @@
     "metascraper-lang": "^5.45.25",
     "metascraper-logo": "^5.45.25",
     "metascraper-logo-favicon": "^5.45.26",
+    "metascraper-media-provider": "^5.46.6",
     "metascraper-publisher": "^5.45.25",
     "metascraper-telegram": "^5.45.25",
     "metascraper-title": "^5.45.25",
-    "metascraper-twitter": "^5.45.6",
     "metascraper-url": "^5.45.25",
     "metascraper-video": "^5.45.25",
+    "metascraper-x": "^5.46.5",
     "metascraper-youtube": "^5.45.25",
     "node-cache": "^5.1.2"
   }
