@@ -7,17 +7,18 @@ import metascraper_date from 'metascraper-date'
 import metascraper_description from 'metascraper-description'
 import metascraper_feed from 'metascraper-feed'
 import metascraper_image from 'metascraper-image'
+import metascraper_instagram from 'metascraper-instagram'
 import metascraper_lang from 'metascraper-lang'
 import metascraper_logo from 'metascraper-logo'
 import metascraper_logo_favicon from 'metascraper-logo-favicon'
+import metascraper_media_provider from 'metascraper-media-provider'
 import metascraper_publisher from 'metascraper-publisher'
 import metascraper_telegram from 'metascraper-telegram'
 import metascraper_title from 'metascraper-title'
-import metascraper_twitter from 'metascraper-twitter'
 import metascraper_url from 'metascraper-url'
-import metascraper_youtube from 'metascraper-youtube'
-import metascraper_instagram from 'metascraper-instagram'
 import metascraper_video from 'metascraper-video'
+import metascraper_x from 'metascraper-x'
+import metascraper_youtube from 'metascraper-youtube'
 import Redis from 'ioredis'
 import NodeCache from 'node-cache'
 
@@ -44,13 +45,14 @@ const scraper = metascraper([
   metascraper_lang(),
   metascraper_logo(),
   metascraper_logo_favicon(),
+  metascraper_media_provider(),
   metascraper_publisher(),
   metascraper_telegram(),
   metascraper_title(),
-  metascraper_twitter(),
   metascraper_url(),
-  metascraper_youtube(),
   metascraper_video(),
+  metascraper_x(),
+  metascraper_youtube(),
 ])
 
 const redis = (
