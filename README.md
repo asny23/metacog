@@ -66,7 +66,7 @@ environment variables:
   - Port to expose app
   - if undefined, 3000
 - `REDIS_HOST`
-  - Redis host for caching
+  - Redis/Valkey host for caching
   - if undefined, memory cache is used
 - `REDIS_PORT`
   - Redis port
