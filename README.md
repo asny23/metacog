@@ -33,8 +33,8 @@ returns
 ## Run locally
 
 - Requirements
-  - Node.js 22.x
-  - npm@10
+  - Node.js 24.x
+  - npm@11
 
 ```shell
 $ npm i

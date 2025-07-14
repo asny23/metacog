@@ -1,6 +1,6 @@
 services:
   app:
-    image: bitnami/node:22.15.0
+    image: bitnami/node:24.3.0
     command: sh -c 'npm i && npm run dev'
     environment:
       REDIS_HOST: valkey
