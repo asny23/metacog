@@ -28,7 +28,7 @@ const CACHE_TTL = parseInt(process.env.CACHE_TTL) || 86400
 const CACHE_CHECK = parseInt(process.env.CACHE_CHECK) || 3600
 const port = process.env.PORT || 3000
 const ALLOWED_ORIGIN = []
-const USE_REDIS = process.env.REDIS_HOST !== undefined
+const USE_REDIS = process.env.REDIS_URL !== undefined
 
 if(process.env.ALLOWED_ORIGIN) {
   process.env.ALLOWED_ORIGIN.split(' ').forEach(ao => ALLOWED_ORIGIN.push(new RegExp(ao)))
@@ -57,14 +57,12 @@ const scraper = metascraper([
 
 const redis = (
   USE_REDIS
-  ? new Redis({
-      host: process.env.REDIS_HOST || 'localhost',
-      port: parseInt(process.env.REDIS_PORT) || 6379,
-      family: parseInt(process.env.REDIS_FAMILY) || 4,
-      username: process.env.REDIS_USER || 'default',
-      password: process.env.REDIS_PASS || '',
-      commandTimeout: parseInt(process.env.REDIS_TIMEOUT) || 1000,
-    })
+  ? new Redis(
+      (process.env.REDIS_URL || ''),
+      {
+        commandTimeout: parseInt(process.env.REDIS_TIMEOUT) || 1000,
+      }
+    )
   : undefined
 )
 const memCache = new NodeCache({
