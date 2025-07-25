@@ -1,0 +1,22 @@
+services:
+  - name: metacog
+    type: web
+    runtime: docker
+    plan: free
+    region: oregon
+    healthCheckPath: /health
+    envVars:
+      - key: ALLOWED_ORIGIN
+        sync: false
+      - key: REDIS_URL
+        fromService:
+          name: metacog-kv
+          type: keyvalue
+          property: connectionString
+
+  - name: metacog-kv
+    type: keyvalue
+    ipAllowList: []
+    plan: free
+    region: oregon
+    maxmemoryPolicy: allkeys-lru

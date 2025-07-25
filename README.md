@@ -85,6 +85,15 @@ environment variables:
   - Cache expiration check interval
   - in seconds
 
+## Deploy to [Render](https://render.com)
+
+[Render Blueprints (IaC) – Render Docs](https://render.com/docs/infrastructure-as-code)
+
+1. Set up your account
+1. Edit render.yaml
+1. Commit & push
+1. Apply it in Render dashboard
+
 ## Deploy to [Fly.io](https://fly.io)
 
 1. Set up your account & app & cli
