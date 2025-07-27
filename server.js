@@ -65,10 +65,14 @@ const redis = (
     )
   : undefined
 )
-const memCache = new NodeCache({
-  stdTTL: CACHE_TTL,
-  checkperiod: CACHE_CHECK
-})
+const memCache = (
+  USE_REDIS
+  ? undefined
+  : new NodeCache({
+    stdTTL: CACHE_TTL,
+    checkperiod: CACHE_CHECK
+  })
+)
 
 const getCache = async (key) => {
   try {
@@ -97,6 +101,14 @@ const setCache = async (key, value) => {
 
 console.log(`metacog ${VERSION} start`)
 console.log(`  USE_REDIS: ${USE_REDIS}`)
+if (redis) {
+  redis.on('ready', () => {
+    console.log('ioredis client is connected and ready.');
+  })
+  redis.on('error', (e) => {
+    console.error('ioredis connection error:', e);
+  })
+}
 
 const app = new App({
   settings: { xPoweredBy: false }
