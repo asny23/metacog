@@ -11,7 +11,7 @@ import metascraper_instagram from 'metascraper-instagram'
 import metascraper_lang from 'metascraper-lang'
 import metascraper_logo from 'metascraper-logo'
 import metascraper_logo_favicon from 'metascraper-logo-favicon'
-import metascraper_media_provider from 'metascraper-media-provider'
+// import metascraper_media_provider from 'metascraper-media-provider'
 import metascraper_publisher from 'metascraper-publisher'
 import metascraper_telegram from 'metascraper-telegram'
 import metascraper_title from 'metascraper-title'
@@ -45,7 +45,7 @@ const scraper = metascraper([
   metascraper_lang(),
   metascraper_logo(),
   metascraper_logo_favicon(),
-  metascraper_media_provider(),
+  // metascraper_media_provider(), // stuck on distroless
   metascraper_publisher(),
   metascraper_telegram(),
   metascraper_title(),
