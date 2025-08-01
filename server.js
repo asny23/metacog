@@ -6,6 +6,7 @@ import metascraper_author from 'metascraper-author'
 import metascraper_date from 'metascraper-date'
 import metascraper_description from 'metascraper-description'
 import metascraper_feed from 'metascraper-feed'
+import metascraper_iframe from 'metascraper-iframe'
 import metascraper_image from 'metascraper-image'
 import metascraper_instagram from 'metascraper-instagram'
 import metascraper_lang from 'metascraper-lang'
@@ -13,7 +14,7 @@ import metascraper_logo from 'metascraper-logo'
 import metascraper_logo_favicon from 'metascraper-logo-favicon'
 // import metascraper_media_provider from 'metascraper-media-provider'
 import metascraper_publisher from 'metascraper-publisher'
-import metascraper_telegram from 'metascraper-telegram'
+import metascraper_readability from 'metascraper-readability'
 import metascraper_title from 'metascraper-title'
 import metascraper_url from 'metascraper-url'
 import metascraper_video from 'metascraper-video'
@@ -40,6 +41,7 @@ const scraper = metascraper([
   metascraper_date(),
   metascraper_description(),
   metascraper_feed(),
+  metascraper_iframe(),
   metascraper_image(),
   metascraper_instagram(),
   metascraper_lang(),
@@ -47,7 +49,7 @@ const scraper = metascraper([
   metascraper_logo_favicon(),
   // metascraper_media_provider(), // stuck on distroless
   metascraper_publisher(),
-  metascraper_telegram(),
+  metascraper_readability(),
   metascraper_title(),
   metascraper_url(),
   metascraper_video(),
