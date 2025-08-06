@@ -31,7 +31,7 @@ const port = process.env.PORT || 3000
 const ALLOWED_ORIGIN = []
 const USE_REDIS = process.env.REDIS_URL !== undefined
 
-if(process.env.ALLOWED_ORIGIN) {
+if (process.env.ALLOWED_ORIGIN) {
   process.env.ALLOWED_ORIGIN.split(' ').forEach(ao => ALLOWED_ORIGIN.push(new RegExp(ao)))
 }
 
@@ -83,8 +83,8 @@ const getCache = async (key) => {
         ? JSON.parse(await redis.get(key))
         : memCache.get(key)
     )
-  } catch(e) {
-    console.log('Error occured on getCache', e)
+  } catch (e) {
+    console.error('Error occured on getCache', e)
     return undefined
   }
 }
@@ -96,8 +96,8 @@ const setCache = async (key, value) => {
         ? await redis.set(key, JSON.stringify(value), "EX", CACHE_TTL)
         : memCache.set(key, value)
     )
-  } catch(e) {
-    console.log('Error occured on setCache', e)
+  } catch (e) {
+    console.error('Error occured on setCache', e)
   }
 }
 
@@ -148,8 +148,8 @@ app.get('/', async (req, res) => {
       res.json(metadata)
       await setCache(target, metadata)
     }
-  } catch (err) {
-    console.log('Error occured during scraping:', err)
+  } catch (e) {
+    console.error('Error occured during scraping:', err)
     res.status(400).json({ message: `Scraping the open graph data from "${target}" failed.` })
   }
 })
