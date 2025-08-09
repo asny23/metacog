@@ -16,17 +16,19 @@ returns
 
 ```json
 {
+  "audio": null,
   "author": null,
-  "date": null,
-  "description": "GitHub is where over 100 million developers shape the future of software, together. Contribute to the open source community, manage your Git repositories, review code like a pro, track bugs and fea…",
+  "date": "2025-01-01T00:00:00.000Z",
+  "description": "Join the world’s most widely adopted, AI-powered developer platform where millions of developers, businesses, and the largest open source community build software that advances humanity.",
   "feed": null,
-  "image": "https://github.githubassets.com/images/modules/site/social-cards/campaign-social.png",
+  "iframe": null,
+  "image": "https://images.ctfassets.net/8aevphvgewt8/4UxhHBs2XnuyZ4lYQ83juV/b61529b087aeb4a318bda311edf4c345/home24.jpg",
   "lang": "en",
-  "logo": null,
+  "title": "GitHub · Build and ship software on a single, collaborative platform",
+  "logo": "https://github.com/fluidicon.png",
   "publisher": "GitHub",
-  "title": "GitHub: Let’s build from here",
-  "video": null,
-  "url": "https://github.com/"
+  "url": "https://github.com/",
+  "video": null
 }
 ```
 
