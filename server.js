@@ -24,7 +24,7 @@ import Redis from 'ioredis'
 import NodeCache from 'node-cache'
 
 
-const VERSION='2.4.0'
+const VERSION='3.0.0'
 const CACHE_TTL = parseInt(process.env.CACHE_TTL) || 86400
 const CACHE_CHECK = parseInt(process.env.CACHE_CHECK) || 3600
 const port = process.env.PORT || 3000
