@@ -1,9 +1,10 @@
 services:
   app:
-    image: bitnami/node:24.3.0
+    image: node:24.13.0-slim
+    working_dir: /app
     command: sh -c 'npm i && npm run dev'
     environment:
-      REDIS_URL: valkey
+      REDIS_URL: redis://valkey:6379
       # ALLOWED_ORIGIN: ""
     ports:
       - 3000:3000
