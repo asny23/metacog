@@ -86,6 +86,10 @@ environment variables:
   - Effective only with memory cache
   - Cache expiration check interval
   - in seconds
+- `EXPOSE_VERSION`
+  - Whether to expose the `/version` endpoint
+  - Set to any non-empty value to enable the endpoint
+  - if undefined or empty, endpoint is disabled
 
 ## Deploy to [Render](https://render.com)
 

@@ -30,6 +30,7 @@ const CACHE_CHECK = parseInt(process.env.CACHE_CHECK) || 3600
 const port = process.env.PORT || 3000
 const ALLOWED_ORIGIN = []
 const USE_REDIS = process.env.REDIS_URL !== undefined
+const EXPOSE_VERSION = process.env.EXPOSE_VERSION || ''
 
 if (process.env.ALLOWED_ORIGIN) {
   process.env.ALLOWED_ORIGIN.split(' ').forEach(ao => ALLOWED_ORIGIN.push(new RegExp(ao)))
@@ -118,7 +119,9 @@ const app = new App({
 
 app.get('/health', (_, res) => res.send('ok!'))
 
-app.get('/version', (_, res) => res.send(VERSION))
+if (EXPOSE_VERSION) {
+  app.get('/version', (_, res) => res.send(VERSION))
+}
 
 app.get('/', async (req, res) => {
   if (ALLOWED_ORIGIN.length) {
