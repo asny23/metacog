@@ -8,11 +8,9 @@ import metascraper_description from 'metascraper-description'
 import metascraper_feed from 'metascraper-feed'
 import metascraper_iframe from 'metascraper-iframe'
 import metascraper_image from 'metascraper-image'
-import metascraper_instagram from 'metascraper-instagram'
 import metascraper_lang from 'metascraper-lang'
 import metascraper_logo from 'metascraper-logo'
 import metascraper_logo_favicon from 'metascraper-logo-favicon'
-// import metascraper_media_provider from 'metascraper-media-provider'
 import metascraper_publisher from 'metascraper-publisher'
 import metascraper_readability from 'metascraper-readability'
 import metascraper_title from 'metascraper-title'
@@ -44,11 +42,9 @@ const scraper = metascraper([
   metascraper_feed(),
   metascraper_iframe(),
   metascraper_image(),
-  metascraper_instagram(),
   metascraper_lang(),
   metascraper_logo(),
   metascraper_logo_favicon(),
-  // metascraper_media_provider(), // stuck on distroless
   metascraper_publisher(),
   metascraper_readability(),
   metascraper_title(),
