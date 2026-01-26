@@ -18,15 +18,15 @@ returns
 {
   "audio": null,
   "author": null,
-  "date": "2025-01-01T00:00:00.000Z",
+  "date": "2026-01-01T00:00:00.000Z",
   "description": "Join the world’s most widely adopted, AI-powered developer platform where millions of developers, businesses, and the largest open source community build software that advances humanity.",
   "feed": null,
   "iframe": null,
-  "image": "https://images.ctfassets.net/8aevphvgewt8/4UxhHBs2XnuyZ4lYQ83juV/b61529b087aeb4a318bda311edf4c345/home24.jpg",
+  "image": "https://images.ctfassets.net/8aevphvgewt8/4pe4eOtUJ0ARpZRE4fNekf/f52b1f9c52f059a33170229883731ed0/GH-Homepage-Universe-img.png",
   "lang": "en",
-  "title": "GitHub · Build and ship software on a single, collaborative platform",
   "logo": "https://github.com/fluidicon.png",
   "publisher": "GitHub",
+  "title": "GitHub · Change is constant. GitHub keeps you ahead.",
   "url": "https://github.com/",
   "video": null
 }
