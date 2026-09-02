@@ -20,6 +20,7 @@ import metascraper_x from 'metascraper-x'
 import metascraper_youtube from 'metascraper-youtube'
 import Redis from 'ioredis'
 import NodeCache from 'node-cache'
+import dns from 'node:dns'
 import net from 'node:net'
 
 
@@ -36,6 +37,13 @@ if (process.env.ALLOWED_ORIGIN) {
 }
 
 const ssrfError = (message) => Object.assign(new Error(message), { code: 'SSRF_BLOCKED' })
+
+const isSsrfError = (error) => {
+  for (let current = error; current; current = current.cause) {
+    if (current.code === 'SSRF_BLOCKED') return true
+  }
+  return false
+}
 
 const ipv4ToInt = (ip) =>
   ip.split('.').reduce((acc, octet) => ((acc << 8) >>> 0) + Number(octet), 0) >>> 0
@@ -134,6 +142,29 @@ const assertPublicHttpUrl = (raw) => {
     throw ssrfError('Requests to this address are not allowed.')
   }
   return url
+}
+
+const safeDnsLookup = (hostname, options, callback) => {
+  const cb = typeof options === 'function' ? options : callback
+  const opts = typeof options === 'function' ? {} : options
+  dns.lookup(hostname, { ...opts, all: false }, (error, address, family) => {
+    if (error) return cb(error)
+    if (isBlockedAddress(address)) {
+      return cb(ssrfError('Requests to "' + hostname + '" are not allowed.'))
+    }
+    cb(null, address, family)
+  })
+}
+
+const SSRF_SAFE_GOT_OPTIONS = {
+  dnsLookup: safeDnsLookup,
+  hooks: {
+    beforeRedirect: [
+      (options) => {
+        assertPublicHttpUrl(options.url.toString())
+      },
+    ],
+  },
 }
 
 const scraper = metascraper([
@@ -252,7 +283,17 @@ app.get('/', async (req, res) => {
     if (cache) {
       res.json(cache)
     } else {
-      const { body: html, url } = await got(target)
+      let response
+      try {
+        response = await got(target, SSRF_SAFE_GOT_OPTIONS)
+      } catch (e) {
+        if (isSsrfError(e)) {
+          res.status(400).json({ message: 'The supplied URL is not allowed.' })
+          return
+        }
+        throw e
+      }
+      const { body: html, url } = response
       const metadata = await scraper({ html, url })
       res.json(metadata)
       await setCache(target, metadata)
