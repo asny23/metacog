@@ -213,8 +213,8 @@ const getCache = async (key) => {
         ? JSON.parse(await redis.get(key))
         : memCache.get(key)
     )
-  } catch (e) {
-    console.error('Error occured on getCache', e)
+  } catch (error) {
+    console.error('Error occured on getCache', error)
     return undefined
   }
 }
@@ -226,8 +226,8 @@ const setCache = async (key, value) => {
         ? await redis.set(key, JSON.stringify(value), "EX", CACHE_TTL)
         : memCache.set(key, value)
     )
-  } catch (e) {
-    console.error('Error occured on setCache', e)
+  } catch (error) {
+    console.error('Error occured on setCache', error)
   }
 }
 
@@ -237,8 +237,8 @@ if (redis) {
   redis.on('ready', () => {
     console.log('ioredis client is connected and ready.');
   })
-  redis.on('error', (e) => {
-    console.error('ioredis connection error:', e);
+  redis.on('error', (error) => {
+    console.error('ioredis connection error:', error);
   })
 }
 
@@ -273,7 +273,7 @@ app.get('/', async (req, res) => {
 
   try {
     assertPublicHttpUrl(target)
-  } catch (e) {
+  } catch (error) {
     res.status(400).json({ message: 'The supplied URL is not allowed.' })
     return
   }
@@ -286,20 +286,20 @@ app.get('/', async (req, res) => {
       let response
       try {
         response = await got(target, SSRF_SAFE_GOT_OPTIONS)
-      } catch (e) {
-        if (isSsrfError(e)) {
+      } catch (error) {
+        if (isSsrfError(error)) {
           res.status(400).json({ message: 'The supplied URL is not allowed.' })
           return
         }
-        throw e
+        throw error
       }
       const { body: html, url } = response
       const metadata = await scraper({ html, url })
       res.json(metadata)
       await setCache(target, metadata)
     }
-  } catch (e) {
-    console.error('Error occured during scraping:', err)
+  } catch (error) {
+    console.error('Error occured during scraping:', error)
     res.status(400).json({ message: `Scraping the open graph data from "${target}" failed.` })
   }
 })
