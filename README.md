@@ -16,19 +16,19 @@ returns
 
 ```json
 {
-  "audio": null,
-  "author": null,
-  "date": "2026-01-01T00:00:00.000Z",
-  "description": "Join the world’s most widely adopted, AI-powered developer platform where millions of developers, businesses, and the largest open source community build software that advances humanity.",
-  "feed": null,
   "iframe": null,
+  "description": "Join the world’s most widely adopted, AI-powered developer platform where millions of developers, businesses, and the largest open source community build software that advances humanity.",
+  "url": "https://github.com/",
+  "publisher": "GitHub",
+  "feed": null,
   "image": "https://images.ctfassets.net/8aevphvgewt8/4pe4eOtUJ0ARpZRE4fNekf/f52b1f9c52f059a33170229883731ed0/GH-Homepage-Universe-img.png",
   "lang": "en",
-  "logo": "https://github.com/fluidicon.png",
-  "publisher": "GitHub",
+  "video": null,
+  "audio": null,
+  "date": "2026-01-01T00:00:00.000Z",
   "title": "GitHub · Change is constant. GitHub keeps you ahead.",
-  "url": "https://github.com/",
-  "video": null
+  "author": null,
+  "logo": "https://github.com/fluidicon.png"
 }
 ```
 
