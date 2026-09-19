@@ -146,13 +146,20 @@ const assertPublicHttpUrl = (raw) => {
 
 const safeDnsLookup = (hostname, options, callback) => {
   const cb = typeof options === 'function' ? options : callback
-  const opts = typeof options === 'function' ? {} : options
-  dns.lookup(hostname, { ...opts, all: false }, (error, address, family) => {
+  const opts = typeof options === 'function' ? {} : { ...options }
+  const returnAll = opts.all === true
+
+  dns.lookup(hostname, { ...opts, all: true }, (error, addresses) => {
     if (error) return cb(error)
-    if (isBlockedAddress(address)) {
+    const allowed = addresses.filter(({ address }) => !isBlockedAddress(address))
+    if (allowed.length === 0) {
       return cb(ssrfError('Requests to "' + hostname + '" are not allowed.'))
     }
-    cb(null, address, family)
+    if (returnAll) {
+      cb(null, allowed)
+    } else {
+      cb(null, allowed[0].address, allowed[0].family)
+    }
   })
 }
 
