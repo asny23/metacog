@@ -13,7 +13,7 @@ services:
       - .:/app
       - node_modules:/app/node_modules
   valkey:
-    image: valkey/valkey:8.1
+    image: valkey/valkey:9.1
     ports:
       - 6379:6379
 
