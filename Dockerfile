@@ -1,11 +1,11 @@
-FROM node:24.21.0-slim AS builder
+FROM node:26.10.0-slim AS builder
 
 WORKDIR /app
 COPY package*.json .
 RUN npm ci
 
 
-FROM gcr.io/distroless/nodejs24-debian12:nonroot
+FROM gcr.io/distroless/nodejs26-debian13:nonroot
 
 WORKDIR /app
 EXPOSE 3000

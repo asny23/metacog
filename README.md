@@ -35,7 +35,7 @@ returns
 ## Run locally
 
 - Requirements
-  - Node.js 24.x
+  - Node.js 26.x
   - npm@11
 
 ```shell
